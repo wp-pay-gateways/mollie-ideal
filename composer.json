@@ -1,0 +1,36 @@
+{
+	"name": "wp-pay-gateways/mollie-ideal",
+	"description": "Mollie iDEAL driver for the WordPress payment processing library.",
+	"keywords": ["wordpress", "wp", "pay", "mollie", "ideal", "gateway", "pronamic"],
+	"homepage": "http://www.wp-pay.org/gateways/mollie-ideal/",
+	"license": "GPL",
+	"authors": [
+		{
+			"name": "Pronamic",
+			"email": "info@pronamic.eu",
+			"homepage": "http://www.pronamic.eu/",
+			"role": "Company"
+		},
+		{
+			"name": "Remco Tolsma",
+			"email": "info@remcotolsma.nl",
+			"homepage": "http://www.remcotolsma.nl/",
+			"role": "Developer"
+		}
+	],
+	"support": {
+		"email": "support@wp-pay.org",
+		"issues": "https://github.com/wp-pay-gateways/mollie-ideal/issues",
+		"source": "https://github.com/wp-pay-gateways/mollie-ideal"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"require": {
+		"php": ">=5.2.4",
+		"wp-pay/core": "dev-develop"
+	},
+	"require-dev": {
+		"satooshi/php-coveralls": "dev-master"
+	}
+}
