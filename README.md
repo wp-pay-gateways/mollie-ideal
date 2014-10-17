@@ -13,3 +13,20 @@
 ## Documentation
 
 *	[Mollie iDEAL API](https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/)
+
+## Development environment
+
+If you want to test Mollie iDEAL on a development environment wich is not 
+accessible for Mollie you might get the following error:
+
+> -3 A fetch was issued without (proper) specification of 'reporturl'
+
+To fix this issue you can override the Mollie 'reporturl' parameter by 
+the following configuration constant:
+
+```
+define( 'MOLLIE_IDEAL_REPORT_URL', 'http://www.example.com/' );
+```
+
+You can put this in your WordPress configuration file and you should be good
+to go.
