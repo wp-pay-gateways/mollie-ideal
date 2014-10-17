@@ -79,7 +79,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 	 * @param Pronamic_Pay_PaymentDataInterface $data
 	 * @see Pronamic_WP_Pay_Gateway::start()
 	 */
-	public function start( Pronamic_Pay_PaymentDataInterface $data, Pronamic_Pay_Payment $payment ) {
+	public function start( Pronamic_Pay_PaymentDataInterface $data, Pronamic_Pay_Payment $payment, $payment_method = null ) {
 		$result = $this->client->create_payment(
 			$data->get_issuer_id(),
 			Pronamic_WP_Util::amount_to_cents( $data->get_amount() ),
