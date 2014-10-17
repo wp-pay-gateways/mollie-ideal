@@ -118,9 +118,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 		// @see http://codex.wordpress.org/Function_Reference/add_query_arg
 		$url = Pronamic_WP_Util::build_url( self::API_URL, $parameters );
 
-		return Pronamic_WP_Util::remote_get_body( $url, 200, array(
-			'sslverify' => false,
-		) );
+		return Pronamic_WP_Util::remote_get_body( $url, 200 );
 	}
 
 	//////////////////////////////////////////////////
