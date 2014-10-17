@@ -99,6 +99,10 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 			$parameters['testmode'] = 'true';
 		}
 
+		if ( isset( $parameters['reporturl'] ) && defined( 'MOLLIE_IDEAL_REPORT_URL' ) ) {
+			$parameters['reporturl'] = MOLLIE_IDEAL_REPORT_URL;
+		}
+
 		return $parameters;
 	}
 
