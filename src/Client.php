@@ -220,7 +220,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 
 		$result = $this->send_request( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::FETCH, $parameters );
 
-		if ( false !== $result ) {
+		if ( false !== $result && ! is_wp_error( $result ) ) {
 			$xml = Pronamic_WP_Util::simplexml_load_string( $result );
 
 			if ( is_wp_error( $xml ) ) {
