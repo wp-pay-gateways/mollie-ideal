@@ -21,9 +21,9 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 	/**
 	 * Constructs and initializes an Mollie gateway
 	 *
-	 * @param Pronamic_Gateways_Mollie_IDeal_Config $config
+	 * @param Pronamic_WP_Pay_Gateways_Mollie_IDeal_Config $config
 	 */
-	public function __construct( Pronamic_Gateways_Mollie_IDeal_Config $config ) {
+	public function __construct( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Config $config ) {
 		parent::__construct( $config );
 
 		$this->set_method( Pronamic_WP_Pay_Gateway::METHOD_HTTP_REDIRECT );
