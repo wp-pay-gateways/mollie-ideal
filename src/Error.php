@@ -3,10 +3,10 @@
 /**
  * Title: iDEAL Mollie error
  * Description:
- * Copyright: Copyright (c) 2005 - 2011
+ * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
- * @version 1.0
+ * @version 1.0.0
  * @see https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
  */
 class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Error {
