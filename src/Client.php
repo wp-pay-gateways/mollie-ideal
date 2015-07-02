@@ -170,7 +170,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 		$result = false;
 
 		if ( isset( $xml->item ) ) {
-			if ( 'error' == $xml->item['type'] ) {
+			if ( 'error' === $xml->item['type'] ) {
 				$error = new Pronamic_WP_Pay_Gateways_Mollie_IDeal_Error(
 					(string) $xml->item->errorcode,
 					(string) $xml->item->message
