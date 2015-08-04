@@ -170,7 +170,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 		$result = false;
 
 		if ( isset( $xml->item ) ) {
-			if ( 'error' == $xml->item['type'] ) {
+			if ( 'error' === $xml->item['type'] ) {
 				$error = new Pronamic_WP_Pay_Gateways_Mollie_IDeal_Error(
 					(string) $xml->item->errorcode,
 					(string) $xml->item->message
@@ -262,16 +262,16 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 			} else {
 				$order = new stdClass();
 
-				$order->transaction_id = Pronamic_XML_Util::filter( $xml->order->transaction_id );
-				$order->amount         = Pronamic_XML_Util::filter( $xml->order->amount );
-				$order->currency       = Pronamic_XML_Util::filter( $xml->order->currency );
-				$order->payed          = Pronamic_XML_Util::filter( $xml->order->payed, FILTER_VALIDATE_BOOLEAN );
-				$order->status         = Pronamic_XML_Util::filter( $xml->order->status );
+				$order->transaction_id = Pronamic_WP_Pay_XML_Security::filter( $xml->order->transaction_id );
+				$order->amount         = Pronamic_WP_Pay_XML_Security::filter( $xml->order->amount );
+				$order->currency       = Pronamic_WP_Pay_XML_Security::filter( $xml->order->currency );
+				$order->payed          = Pronamic_WP_Pay_XML_Security::filter( $xml->order->payed, FILTER_VALIDATE_BOOLEAN );
+				$order->status         = Pronamic_WP_Pay_XML_Security::filter( $xml->order->status );
 
 				$order->consumer          = new stdClass();
-				$order->consumer->name    = Pronamic_XML_Util::filter( $xml->order->consumer->consumerName );
-				$order->consumer->account = Pronamic_XML_Util::filter( $xml->order->consumer->consumerAccount );
-				$order->consumer->city    = Pronamic_XML_Util::filter( $xml->order->consumer->consumerCity );
+				$order->consumer->name    = Pronamic_WP_Pay_XML_Security::filter( $xml->order->consumer->consumerName );
+				$order->consumer->account = Pronamic_WP_Pay_XML_Security::filter( $xml->order->consumer->consumerAccount );
+				$order->consumer->city    = Pronamic_WP_Pay_XML_Security::filter( $xml->order->consumer->consumerCity );
 
 				$result = $order;
 			}

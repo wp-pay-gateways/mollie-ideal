@@ -11,6 +11,8 @@
  */
 class Pronamic_WP_Pay_Gateways_Mollie_IDeal_ActionsTest extends PHPUnit_Framework_TestCase {
 	/**
+	 * Test actions
+	 *
 	 * @dataProvider actions_matrix_provider
 	 */
 	public function test_actions( $action, $expected ) {
@@ -23,5 +25,5 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_ActionsTest extends PHPUnit_Framewor
 			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::FETCH, 'fetch' ),
 			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::BANK_LIST, 'banklist' ),
 		);
-    }
+	}
 }

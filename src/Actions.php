@@ -2,7 +2,7 @@
 
 /**
  * Title: Mollie iDEAL actions constants
- * Description: 
+ * Description:
  * Copyright: Copyright (c) 2005 - 2015
  * Company: Pronamic
  * @author Remco Tolsma
@@ -12,21 +12,21 @@
 class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions {
 	/**
 	 * Check
-	 * 
+	 *
 	 * @var string
 	 */
 	const CHECK = 'check';
 
 	/**
 	 * Fetch
-	 * 
+	 *
 	 * @var string
 	 */
 	const FETCH = 'fetch';
 
 	/**
 	 * Bank list
-	 * 
+	 *
 	 * @var string
 	 */
 	const BANK_LIST = 'banklist';

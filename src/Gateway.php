@@ -32,7 +32,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 		$this->set_slug( self::SLUG );
 
 		$this->client = new Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client( $config->partner_id );
-		$this->client->set_test_mode( $config->mode == Pronamic_IDeal_IDeal::MODE_TEST );
+		$this->client->set_test_mode( Pronamic_IDeal_IDeal::MODE_TEST === $config->mode );
 	}
 
 	/////////////////////////////////////////////////
@@ -67,7 +67,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 			'label'    => __( 'Choose your bank', 'pronamic_ideal' ),
 			'required' => true,
 			'type'     => 'select',
-			'choices'  => $this->get_transient_issuers()
+			'choices'  => $this->get_transient_issuers(),
 		);
 	}
 
