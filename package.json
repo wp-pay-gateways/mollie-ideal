@@ -1,6 +1,6 @@
 {
   "name": "mollie-ideal",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Mollie iDEAL driver for the WordPress payment processing library.",
   "repository": {
     "type": "git",
@@ -27,7 +27,7 @@
       "url": "http://www.remcotolsma.nl/"
     }
   ],
-  "license": "GPL",
+  "license": "GPL-2.0",
   "bugs": {
     "url": "https://github.com/wp-pay-gateways/mollie-ideal/issues"
   },
@@ -38,6 +38,7 @@
     "grunt-phpcs": "^0.4.0",
     "grunt-phplint": "0.0.5",
     "grunt-phpmd": "^0.1.1",
-    "grunt-phpunit": "^0.3.6"
+    "grunt-phpunit": "^0.3.6",
+    "load-grunt-tasks": "^3.2.0"
   }
 }
