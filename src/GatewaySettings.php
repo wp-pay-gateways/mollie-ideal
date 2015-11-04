@@ -29,6 +29,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_GatewaySettings extends Pronamic_WP_
 	public function fields( array $fields ) {
 		// Partner ID
 		$fields[] = array(
+			'filter'      => FILTER_SANITIZE_STRING,
 			'section'     => 'mollie_ideal',
 			'meta_key'    => '_pronamic_gateway_mollie_partner_id',
 			'title'       => __( 'Partner ID', 'pronamic_ideal' ),
@@ -40,6 +41,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_GatewaySettings extends Pronamic_WP_
 
 		// Profile Key
 		$fields[] = array(
+			'filter'      => FILTER_SANITIZE_STRING,
 			'section'     => 'mollie_ideal',
 			'meta_key'    => '_pronamic_gateway_mollie_profile_key',
 			'title'       => __( 'Profile Key', 'pronamic_ideal' ),
