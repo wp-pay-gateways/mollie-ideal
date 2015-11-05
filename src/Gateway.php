@@ -84,8 +84,8 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 			$data->get_issuer_id(),
 			Pronamic_WP_Util::amount_to_cents( $data->get_amount() ),
 			$data->get_description(),
-			add_query_arg( 'payment', $payment->get_id(), home_url( '/' ) ),
-			add_query_arg( 'payment', $payment->get_id(), home_url( '/' ) )
+			$payment->get_return_url(),
+			$payment->get_return_url()
 		);
 
 		if ( false !== $result ) {
