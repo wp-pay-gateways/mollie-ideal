@@ -14,7 +14,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	 *
 	 * @var string
 	 */
-	const API_URL = 'https://secure.mollie.nl//xml/ideal/';
+	const API_URL = 'https://secure.mollie.nl/xml/ideal/';
 
 	/////////////////////////////////////////////////
 
