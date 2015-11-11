@@ -1,4 +1,4 @@
-# WordPress Pay Gateway: Mollie iDEAL
+# [DEPRECATED] WordPress Pay Gateway: Mollie iDEAL
 
 **Mollie iDEAL driver for the WordPress payment processing library.**
 
