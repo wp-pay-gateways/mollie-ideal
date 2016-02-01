@@ -3,8 +3,9 @@
 /**
  * Title: Mollie
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.0.0
  */
@@ -14,7 +15,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	 *
 	 * @var string
 	 */
-	const API_URL = 'https://secure.mollie.nl//xml/ideal/';
+	const API_URL = 'https://secure.mollie.nl/xml/ideal/';
 
 	/////////////////////////////////////////////////
 

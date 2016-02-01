@@ -1,7 +1,7 @@
 {
 	"name": "wp-pay-gateways/mollie-ideal",
-	"description": "Mollie iDEAL driver for the WordPress payment processing library.",
-	"keywords": ["wordpress", "wp", "pay", "mollie", "ideal", "gateway", "pronamic"],
+	"description": "[DEPRECATED] Mollie iDEAL driver for the WordPress payment processing library.",
+	"keywords": ["deprecated", "wordpress", "wp", "pay", "mollie", "ideal", "gateway", "pronamic"],
 	"homepage": "http://www.wp-pay.org/gateways/mollie-ideal/",
 	"license": "GPL",
 	"authors": [
@@ -28,7 +28,8 @@
 	},
 	"require": {
 		"php": ">=5.2.4",
-		"wp-pay/core": ">=1.2.1"
+		"wp-pay/core": "^1.3.1",
+		"wp-pay-gateways/common": "^1.0.0"
 	},
 	"require-dev": {
 		"satooshi/php-coveralls": "dev-master"
