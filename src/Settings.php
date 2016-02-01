@@ -3,8 +3,9 @@
 /**
  * Title: Mollie iDEAL gateway settings
  * Description:
- * Copyright: Copyright (c) 2005 - 2015
+ * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
+ *
  * @author Remco Tolsma
  * @version 1.1.0
  * @since 1.1.0
@@ -22,7 +23,6 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Settings extends Pronamic_WP_Pay_Gat
 			'methods' => array( 'mollie_ideal' ),
 		);
 
-		// Return
 		return $sections;
 	}
 
@@ -54,7 +54,6 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Settings extends Pronamic_WP_Pay_Gat
 			'methods'     => array( 'mollie_ideal' ),
 		);
 
-		// Return
 		return $fields;
 	}
 }
