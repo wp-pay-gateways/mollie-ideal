@@ -31,10 +31,6 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Integration extends Pronamic_WP_Pay_
 		return 'Pronamic_WP_Pay_Gateways_Mollie_IDeal_Settings';
 	}
 
-	public function get_gateway_class() {
-		return 'Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway';
-	}
-
 	/**
 	 * Get required settings for this integration.
 	 *
