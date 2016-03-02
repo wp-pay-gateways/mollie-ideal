@@ -7,6 +7,11 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.0.4] - 2016-03-02
+- Added get settings function.
+- Moved get_gateway_class() function to the configuration class.
+- Removed get_config_class(), no longer required.
+
 ## [1.0.3] - 2016-02-01
 - Added an gateway settings class.
 
@@ -19,7 +24,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.3...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.0...1.0.1

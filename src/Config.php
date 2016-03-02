@@ -13,4 +13,8 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Config extends Pronamic_WP_Pay_Gatew
 	public $partner_id;
 
 	public $profile_key;
+
+	public function get_gateway_class() {
+		return 'Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway';
+	}
 }
