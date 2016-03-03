@@ -14,7 +14,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Integration extends Pronamic_WP_Pay_
 	public function __construct() {
 		$this->id            = 'mollie-ideal';
 		$this->name          = 'Mollie - iDEAL';
-		$this->dashboard_url = 'http://www.mollie.nl/';
+		$this->dashboard_url = 'http://www.mollie.nl/beheer/';
 		$this->provider      = 'mollie';
 		$this->deprecated    = true;
 	}
