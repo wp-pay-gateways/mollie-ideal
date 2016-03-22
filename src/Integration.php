@@ -7,14 +7,14 @@
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.0.4
+ * @version 1.0.5
  * @since 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Integration extends Pronamic_WP_Pay_Gateways_AbstractIntegration {
 	public function __construct() {
 		$this->id            = 'mollie-ideal';
 		$this->name          = 'Mollie - iDEAL';
-		$this->dashboard_url = 'http://www.mollie.nl/';
+		$this->dashboard_url = 'http://www.mollie.nl/beheer/';
 		$this->provider      = 'mollie';
 		$this->deprecated    = true;
 	}
