@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [1.0.7] - 2016-10-20
+- Only return Pronamic pay constants.
+
 ## [1.0.6] - 2016-06-16
 - Simplified the gateay payment start function.
 

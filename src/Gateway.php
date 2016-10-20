@@ -1,13 +1,14 @@
 <?php
 
 /**
- * Title: Mollie
+ * Title: Mollie gateway
  * Description:
  * Copyright: Copyright (c) 2005 - 2016
  * Company: Pronamic
  *
  * @author Remco Tolsma
- * @version 1.0.0
+ * @version 1.0.7
+ * @since 1.0.0
  */
 class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gateway {
 	/**
@@ -94,7 +95,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 	 */
 	public function get_supported_payment_methods() {
 		return array(
-			Pronamic_WP_Pay_PaymentMethods::IDEAL => Pronamic_WP_Pay_PaymentMethods::IDEAL,
+			Pronamic_WP_Pay_PaymentMethods::IDEAL,
 		);
 	}
 
