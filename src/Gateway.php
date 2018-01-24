@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Pay\Util;
 
 /**
  * Title: Mollie gateway
@@ -109,7 +110,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Gateway extends Pronamic_WP_Pay_Gate
 	public function start( Pronamic_Pay_Payment $payment ) {
 		$result = $this->client->create_payment(
 			$payment->get_issuer(),
-			Pronamic_WP_Util::amount_to_cents( $payment->get_amount() ),
+			Util::amount_to_cents( $payment->get_amount() ),
 			$payment->get_description(),
 			$payment->get_return_url(),
 			$payment->get_return_url()
