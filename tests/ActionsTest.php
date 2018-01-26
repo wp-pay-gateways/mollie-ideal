@@ -1,4 +1,5 @@
 <?php
+use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Actions;
 
 /**
  * Title: Mollie iDEAL actions constants tests
@@ -22,9 +23,9 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_ActionsTest extends PHPUnit_Framewor
 
 	public function actions_matrix_provider() {
 		return array(
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::CHECK, 'check' ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::FETCH, 'fetch' ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::BANK_LIST, 'banklist' ),
+			array( Actions::CHECK, 'check' ),
+			array( Actions::FETCH, 'fetch' ),
+			array( Actions::BANK_LIST, 'banklist' ),
 		);
 	}
 }

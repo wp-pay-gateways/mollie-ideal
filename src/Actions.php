@@ -1,5 +1,7 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\Mollie_IDeal;
+
 /**
  * Title: Mollie iDEAL actions constants
  * Description:
@@ -10,7 +12,7 @@
  * @version 1.0.0
  * @see https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
  */
-class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions {
+class Actions {
 	/**
 	 * Check
 	 *

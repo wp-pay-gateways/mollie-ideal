@@ -1,4 +1,6 @@
 <?php
+use Pronamic\WordPress\Pay\Core\Statuses;
+use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Statuses;
 
 /**
  * Title: Mollie iDEAL statuses constants tests
@@ -17,18 +19,18 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_StatusesTest extends PHPUnit_Framewo
 	 * @dataProvider status_matrix_provider
 	 */
 	public function test_transform( $mollie_status, $expected ) {
-		$status = Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses::transform( $mollie_status );
+		$status = Statuses::transform( $mollie_status );
 
 		$this->assertEquals( $expected, $status );
 	}
 
 	public function status_matrix_provider() {
 		return array(
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses::SUCCESS, Pronamic_WP_Pay_Statuses::SUCCESS ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses::CANCELLED, Pronamic_WP_Pay_Statuses::CANCELLED ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses::EXPIRED, Pronamic_WP_Pay_Statuses::EXPIRED ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses::FAILURE, Pronamic_WP_Pay_Statuses::FAILURE ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses::CHECKED_BEFORE, null ),
+			array( Statuses::SUCCESS, Statuses::SUCCESS ),
+			array( Statuses::CANCELLED, Statuses::CANCELLED ),
+			array( Statuses::EXPIRED, Statuses::EXPIRED ),
+			array( Statuses::FAILURE, Statuses::FAILURE ),
+			array( Statuses::CHECKED_BEFORE, null ),
 			array( 'not existing status', null ),
 		);
 	}

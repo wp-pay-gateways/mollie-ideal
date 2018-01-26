@@ -1,5 +1,15 @@
 <?php
+
+namespace Pronamic\WordPress\Pay\Gateways\Mollie_IDeal;
+
+use Ambigous;
+use Pronamic\WordPress\Pay\Core\XML\Security;
+use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Actions;
 use Pronamic\WordPress\Pay\Util;
+use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Error;
+use SimpleXMLElement;
+use stdClass;
+use WP_Error;
 
 /**
  * Title: Mollie
@@ -10,7 +20,7 @@ use Pronamic\WordPress\Pay\Util;
  * @author Remco Tolsma
  * @version 1.0.0
  */
-class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
+class Client {
 	/**
 	 * Mollie API endpoint URL
 	 *
@@ -92,6 +102,8 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	 *
 	 * @param string $action
 	 * @param array $parameters
+	 *
+	 * @return array
 	 */
 	private function get_parameters( $action, array $parameters = array() ) {
 		$parameters['a']         = $action;
@@ -115,6 +127,8 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	 *
 	 * @param string $action
 	 * @param array $parameters
+	 *
+	 * @return bool|string|WP_Error
 	 */
 	private function send_request( $action, array $parameters = array() ) {
 		$parameters = $this->get_parameters( $action, $parameters );
@@ -132,12 +146,12 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	/**
 	 * Get banks
 	 *
-	 * @return Ambigous <boolean, multitype:string >
+	 * @return bool|array
 	 */
 	public function get_banks() {
 		$banks = false;
 
-		$result = $this->send_request( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::BANK_LIST );
+		$result = $this->send_request( Actions::BANK_LIST );
 
 		if ( is_wp_error( $result ) ) {
 			$this->error = $result;
@@ -166,14 +180,16 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	/**
 	 * Parse document
 	 *
-	 * @param SimpleXMLElement $element
+	 * @param SimpleXMLElement $xml
+	 *
+	 * @return bool|stdClass
 	 */
 	private function parse_document( SimpleXMLElement $xml ) {
 		$result = false;
 
 		if ( isset( $xml->item ) ) {
 			if ( 'error' === $xml->item['type'] ) {
-				$error = new Pronamic_WP_Pay_Gateways_Mollie_IDeal_Error(
+				$error = new Error(
 					(string) $xml->item->errorcode,
 					(string) $xml->item->message
 				);
@@ -207,11 +223,10 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	 * @param string $description
 	 * @param string $return_url
 	 * @param string $report_url
-	 * @return stdClass
+	 *
+	 * @return bool|stdClass
 	 */
 	public function create_payment( $bank_id, $amount, $description, $return_url, $report_url ) {
-		$result = false;
-
 		$parameters = array(
 			'bank_id'     => $bank_id,
 			'amount'      => $amount,
@@ -224,7 +239,7 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 			$parameters['profile_key'] = $this->profile_key;
 		}
 
-		$result = $this->send_request( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::FETCH, $parameters );
+		$result = $this->send_request( Actions::FETCH, $parameters );
 
 		if ( false !== $result && ! is_wp_error( $result ) ) {
 			$xml = Util::simplexml_load_string( $result );
@@ -245,16 +260,15 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 	 * Check payment with the specified transaction ID
 	 *
 	 * @param string $transaction_id
-	 * @return stdClass
+	 *
+	 * @return bool|stdClass
 	 */
 	public function check_payment( $transaction_id ) {
-		$result = false;
-
 		$parameters = array(
 			'transaction_id' => $transaction_id,
 		);
 
-		$result = $this->send_request( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::CHECK, $parameters );
+		$result = $this->send_request( Actions::CHECK, $parameters );
 
 		if ( false !== $result ) {
 			$xml = Util::simplexml_load_string( $result );
@@ -264,16 +278,16 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Client {
 			} else {
 				$order = new stdClass();
 
-				$order->transaction_id = Pronamic_WP_Pay_XML_Security::filter( $xml->order->transaction_id );
-				$order->amount         = Pronamic_WP_Pay_XML_Security::filter( $xml->order->amount );
-				$order->currency       = Pronamic_WP_Pay_XML_Security::filter( $xml->order->currency );
-				$order->payed          = Pronamic_WP_Pay_XML_Security::filter( $xml->order->payed, FILTER_VALIDATE_BOOLEAN );
-				$order->status         = Pronamic_WP_Pay_XML_Security::filter( $xml->order->status );
+				$order->transaction_id = Security::filter( $xml->order->transaction_id );
+				$order->amount         = Security::filter( $xml->order->amount );
+				$order->currency       = Security::filter( $xml->order->currency );
+				$order->payed          = Security::filter( $xml->order->payed, FILTER_VALIDATE_BOOLEAN );
+				$order->status         = Security::filter( $xml->order->status );
 
 				$order->consumer          = new stdClass();
-				$order->consumer->name    = Pronamic_WP_Pay_XML_Security::filter( $xml->order->consumer->consumerName );
-				$order->consumer->account = Pronamic_WP_Pay_XML_Security::filter( $xml->order->consumer->consumerAccount );
-				$order->consumer->city    = Pronamic_WP_Pay_XML_Security::filter( $xml->order->consumer->consumerCity );
+				$order->consumer->name    = Security::filter( $xml->order->consumer->consumerName );
+				$order->consumer->account = Security::filter( $xml->order->consumer->consumerAccount );
+				$order->consumer->city    = Security::filter( $xml->order->consumer->consumerCity );
 
 				$result = $order;
 			}

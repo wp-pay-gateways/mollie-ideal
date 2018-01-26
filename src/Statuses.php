@@ -1,5 +1,9 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\Mollie_IDeal;
+
+use Pronamic\WordPress\Pay\Core\Statuses as Core_Statuses;
+
 /**
  * Title: Mollie iDEAL statuses constants
  * Description:
@@ -10,7 +14,7 @@
  * @version 1.0.0
  * @see https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
  */
-class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses {
+class Statuses {
 	/**
 	 * Success
 	 *
@@ -56,15 +60,20 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_Statuses {
 	public static function transform( $status ) {
 		switch ( $status ) {
 			case self::SUCCESS :
-				return Pronamic_WP_Pay_Statuses::SUCCESS;
+				return Core_Statuses::SUCCESS;
+
 			case self::CANCELLED :
-				return Pronamic_WP_Pay_Statuses::CANCELLED;
+				return Core_Statuses::CANCELLED;
+
 			case self::EXPIRED :
-				return Pronamic_WP_Pay_Statuses::EXPIRED;
+				return Core_Statuses::EXPIRED;
+
 			case self::FAILURE :
-				return Pronamic_WP_Pay_Statuses::FAILURE;
+				return Core_Statuses::FAILURE;
+
 			case self::CHECKED_BEFORE :
 				return null;
+
 			default:
 				return null;
 		}
