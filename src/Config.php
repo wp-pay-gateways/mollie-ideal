@@ -17,8 +17,4 @@ class Config extends GatewayConfig {
 	public $partner_id;
 
 	public $profile_key;
-
-	public function get_gateway_class() {
-		return __NAMESPACE__ . '\Gateway';
-	}
 }
