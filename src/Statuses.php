@@ -50,8 +50,6 @@ class Statuses {
 	 */
 	const CHECKED_BEFORE = 'CheckedBefore';
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Transform an Mollie state to an more global status
 	 *

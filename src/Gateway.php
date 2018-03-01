@@ -25,8 +25,6 @@ class Gateway extends Core_Gateway {
 	 */
 	const SLUG = 'mollie_ideal';
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initializes an Mollie gateway
 	 *
@@ -43,8 +41,6 @@ class Gateway extends Core_Gateway {
 		$this->client = new Client( $config->partner_id );
 		$this->client->set_test_mode( Gateway::MODE_TEST === $config->mode );
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get issuers
@@ -67,8 +63,6 @@ class Gateway extends Core_Gateway {
 		return $groups;
 	}
 
-	/////////////////////////////////////////////////
-
 	public function get_issuer_field() {
 		if ( PaymentMethods::IDEAL === $this->get_payment_method() ) {
 			return array(
@@ -82,8 +76,6 @@ class Gateway extends Core_Gateway {
 		}
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Get payment methods
 	 *
@@ -92,8 +84,6 @@ class Gateway extends Core_Gateway {
 	public function get_payment_methods() {
 		return PaymentMethods::IDEAL;
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Get supported payment methods
@@ -105,8 +95,6 @@ class Gateway extends Core_Gateway {
 			PaymentMethods::IDEAL,
 		);
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Start
@@ -132,8 +120,6 @@ class Gateway extends Core_Gateway {
 			$this->error = $this->client->get_error();
 		}
 	}
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Update status of the specified payment

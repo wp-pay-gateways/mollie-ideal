@@ -27,8 +27,6 @@ class Error {
 	 */
 	private $message;
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Constructs and initializes an Mollie error object
 	 *
@@ -40,11 +38,7 @@ class Error {
 		$this->message = $message;
 	}
 
-	//////////////////////////////////////////////////
-
 	// @todo getters and setters
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Create an string representation of this object

@@ -28,8 +28,6 @@ class Client {
 	 */
 	const API_URL = 'https://secure.mollie.nl/xml/ideal/';
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Mollie partner ID
 	 *
@@ -44,8 +42,6 @@ class Client {
 	 */
 	private $profile_key;
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Indicator to use test mode or not
 	 *
@@ -53,16 +49,12 @@ class Client {
 	 */
 	private $test_mode;
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Error
 	 *
 	 * @var WP_Error
 	 */
 	private $error;
-
-	/////////////////////////////////////////////////
 
 	/**
 	 * Constructs and initializes an Mollie client object
@@ -73,8 +65,6 @@ class Client {
 		$this->partner_id = $partner_id;
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Error
 	 *
@@ -84,8 +74,6 @@ class Client {
 		return $this->error;
 	}
 
-	/////////////////////////////////////////////////
-
 	/**
 	 * Set test mode
 	 *
@@ -94,8 +82,6 @@ class Client {
 	public function set_test_mode( $test_mode ) {
 		$this->test_mode = $test_mode;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get the default parameters wich are required in every Mollie request
@@ -120,8 +106,6 @@ class Client {
 		return $parameters;
 	}
 
-	//////////////////////////////////////////////////
-
 	/**
 	 * Send request with the specified action and parameters
 	 *
@@ -140,8 +124,6 @@ class Client {
 
 		return Util::remote_get_body( $url, 200 );
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Get banks
@@ -174,8 +156,6 @@ class Client {
 
 		return $banks;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Parse document
@@ -212,8 +192,6 @@ class Client {
 
 		return $result;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Create payment with the specified details
@@ -253,8 +231,6 @@ class Client {
 
 		return $result;
 	}
-
-	//////////////////////////////////////////////////
 
 	/**
 	 * Check payment with the specified transaction ID
