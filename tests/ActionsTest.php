@@ -1,5 +1,6 @@
 <?php
-use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Actions;
+
+namespace Pronamic\WordPress\Pay\Gateways\Mollie_IDeal;
 
 /**
  * Title: Mollie iDEAL actions constants tests
@@ -11,7 +12,7 @@ use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Actions;
  * @version 1.0.0
  * @see https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
  */
-class Pronamic_WP_Pay_Gateways_Mollie_IDeal_ActionsTest extends PHPUnit_Framework_TestCase {
+class ActionsTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test actions
 	 *
