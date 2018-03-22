@@ -1,12 +1,12 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\Mollie_IDeal;
+namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
 use Ambigous;
 use Pronamic\WordPress\Pay\Core\XML\Security;
-use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Actions;
+use Pronamic\WordPress\Pay\Gateways\MollieIDeal\Actions;
 use Pronamic\WordPress\Pay\Util;
-use Pronamic\WordPress\Pay\Gateways\Mollie_IDeal\Error;
+use Pronamic\WordPress\Pay\Gateways\MollieIDeal\Error;
 use SimpleXMLElement;
 use stdClass;
 use WP_Error;

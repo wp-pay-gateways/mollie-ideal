@@ -1,6 +1,6 @@
 <?php
 
-namespace Pronamic\WordPress\Pay\Gateways\Mollie_IDeal;
+namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
 /**
  * Title: iDEAL Mollie error

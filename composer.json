@@ -25,7 +25,7 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Pronamic\\WordPress\\Pay\\Gateways\\Mollie_IDeal\\": "src/"
+			"Pronamic\\WordPress\\Pay\\Gateways\\MollieIDeal\\": "src/"
 		}
 	},
 	"config": {
