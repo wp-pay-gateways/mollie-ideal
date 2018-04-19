@@ -97,7 +97,7 @@ class Gateway extends Core_Gateway {
 	public function start( Payment $payment ) {
 		$result = $this->client->create_payment(
 			$payment->get_issuer(),
-			Core_Util::amount_to_cents( $payment->get_amount() ),
+			Core_Util::amount_to_cents( $payment->get_amount()->get_amount() ),
 			$payment->get_description(),
 			$payment->get_return_url(),
 			$payment->get_return_url()
