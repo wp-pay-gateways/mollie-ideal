@@ -7,6 +7,9 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.0] - 2018-05-11
+- Switched to PHP namespaces.
+
 ## [1.0.7] - 2016-10-20
 - Only return Pronamic pay constants.
 
@@ -33,7 +36,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.6...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/mollie-ideal/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.6...2.0.0
 [1.0.6]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.5...1.0.6
 [1.0.5]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.4...1.0.5
 [1.0.4]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.3...1.0.4
