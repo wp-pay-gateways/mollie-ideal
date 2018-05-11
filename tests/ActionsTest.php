@@ -1,16 +1,18 @@
 <?php
 
+namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
+
 /**
  * Title: Mollie iDEAL actions constants tests
  * Description:
- * Copyright: Copyright (c) 2005 - 2016
+ * Copyright: Copyright (c) 2005 - 2018
  * Company: Pronamic
  *
- * @author Remco Tolsma
- * @version 1.0.0
- * @see https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
+ * @author  Remco Tolsma
+ * @version 2.0.0
+ * @see     https://www.mollie.nl/support/documentatie/betaaldiensten/ideal/en/
  */
-class Pronamic_WP_Pay_Gateways_Mollie_IDeal_ActionsTest extends PHPUnit_Framework_TestCase {
+class ActionsTest extends \PHPUnit_Framework_TestCase {
 	/**
 	 * Test actions
 	 *
@@ -22,9 +24,9 @@ class Pronamic_WP_Pay_Gateways_Mollie_IDeal_ActionsTest extends PHPUnit_Framewor
 
 	public function actions_matrix_provider() {
 		return array(
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::CHECK, 'check' ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::FETCH, 'fetch' ),
-			array( Pronamic_WP_Pay_Gateways_Mollie_IDeal_Actions::BANK_LIST, 'banklist' ),
+			array( Actions::CHECK, 'check' ),
+			array( Actions::FETCH, 'fetch' ),
+			array( Actions::BANK_LIST, 'banklist' ),
 		);
 	}
 }
