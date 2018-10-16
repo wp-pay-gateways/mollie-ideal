@@ -4,7 +4,6 @@ namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
 use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
 use Pronamic\WordPress\Pay\Core\PaymentMethods;
-use Pronamic\WordPress\Pay\Core\Util as Core_Util;
 use Pronamic\WordPress\Pay\Payments\Payment;
 
 /**
@@ -82,7 +81,7 @@ class Gateway extends Core_Gateway {
 	public function start( Payment $payment ) {
 		$result = $this->client->create_payment(
 			$payment->get_issuer(),
-			Core_Util::amount_to_cents( $payment->get_amount()->get_amount() ),
+			$payment->get_amount()->get_cents(),
 			$payment->get_description(),
 			$payment->get_return_url(),
 			$payment->get_return_url()
