@@ -32,11 +32,11 @@ class Gateway extends Core_Gateway {
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Gateway::METHOD_HTTP_REDIRECT );
+		$this->set_method( self::METHOD_HTTP_REDIRECT );
 		$this->set_slug( self::SLUG );
 
 		$this->client = new Client( $config->partner_id );
-		$this->client->set_test_mode( Gateway::MODE_TEST === $config->mode );
+		$this->client->set_test_mode( self::MODE_TEST === $config->mode );
 	}
 
 	/**
