@@ -118,8 +118,8 @@ class Client {
 		$parameters = $this->get_parameters( $action, $parameters );
 
 		// WordPress functions uses URL encoding
-		// @see http://codex.wordpress.org/Function_Reference/build_query
-		// @see http://codex.wordpress.org/Function_Reference/add_query_arg
+		// @link http://codex.wordpress.org/Function_Reference/build_query
+		// @link http://codex.wordpress.org/Function_Reference/add_query_arg
 		$url = Util::build_url( self::API_URL, $parameters );
 
 		return Util::remote_get_body( $url, 200 );
