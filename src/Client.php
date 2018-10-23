@@ -2,11 +2,8 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
-use Ambigous;
+use Pronamic\WordPress\Pay\Core\Util;
 use Pronamic\WordPress\Pay\Core\XML\Security;
-use Pronamic\WordPress\Pay\Gateways\MollieIDeal\Actions;
-use Pronamic\WordPress\Pay\Util;
-use Pronamic\WordPress\Pay\Gateways\MollieIDeal\Error;
 use SimpleXMLElement;
 use stdClass;
 use WP_Error;
@@ -117,9 +114,12 @@ class Client {
 	private function send_request( $action, array $parameters = array() ) {
 		$parameters = $this->get_parameters( $action, $parameters );
 
-		// WordPress functions uses URL encoding
-		// @link http://codex.wordpress.org/Function_Reference/build_query
-		// @link http://codex.wordpress.org/Function_Reference/add_query_arg
+		/*
+		 * WordPress functions use URL encoding.
+		 *
+		 * @link http://codex.wordpress.org/Function_Reference/build_query
+		 * @link http://codex.wordpress.org/Function_Reference/add_query_arg
+		 */
 		$url = Util::build_url( self::API_URL, $parameters );
 
 		return Util::remote_get_body( $url, 200 );
