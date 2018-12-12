@@ -4,7 +4,6 @@ namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
 use Pronamic\WordPress\Pay\Core\Gateway as Core_Gateway;
 use Pronamic\WordPress\Pay\Core\PaymentMethods;
-use Pronamic\WordPress\Pay\Core\Util as Core_Util;
 use Pronamic\WordPress\Pay\Payments\Payment;
 
 /**
@@ -14,7 +13,7 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.0
+ * @version 2.0.1
  * @since   1.0.0
  */
 class Gateway extends Core_Gateway {
@@ -33,13 +32,11 @@ class Gateway extends Core_Gateway {
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
 
-		$this->set_method( Gateway::METHOD_HTTP_REDIRECT );
-		$this->set_has_feedback( true );
-		$this->set_amount_minimum( 1.20 );
+		$this->set_method( self::METHOD_HTTP_REDIRECT );
 		$this->set_slug( self::SLUG );
 
 		$this->client = new Client( $config->partner_id );
-		$this->client->set_test_mode( Gateway::MODE_TEST === $config->mode );
+		$this->client->set_test_mode( self::MODE_TEST === $config->mode );
 	}
 
 	/**
@@ -63,19 +60,6 @@ class Gateway extends Core_Gateway {
 		return $groups;
 	}
 
-	public function get_issuer_field() {
-		if ( PaymentMethods::IDEAL === $this->get_payment_method() ) {
-			return array(
-				'id'       => 'pronamic_ideal_issuer_id',
-				'name'     => 'pronamic_ideal_issuer_id',
-				'label'    => __( 'Choose your bank', 'pronamic_ideal' ),
-				'required' => true,
-				'type'     => 'select',
-				'choices'  => $this->get_transient_issuers(),
-			);
-		}
-	}
-
 	/**
 	 * Get supported payment methods
 	 *
@@ -97,7 +81,7 @@ class Gateway extends Core_Gateway {
 	public function start( Payment $payment ) {
 		$result = $this->client->create_payment(
 			$payment->get_issuer(),
-			Core_Util::amount_to_cents( $payment->get_amount()->get_amount() ),
+			$payment->get_total_amount()->get_cents(),
 			$payment->get_description(),
 			$payment->get_return_url(),
 			$payment->get_return_url()
