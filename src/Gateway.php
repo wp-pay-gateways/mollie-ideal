@@ -27,7 +27,7 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Constructs and initializes an Mollie gateway
 	 *
-	 * @param Config $config
+	 * @param Config $config Config.
 	 */
 	public function __construct( Config $config ) {
 		parent::__construct( $config );
@@ -76,7 +76,7 @@ class Gateway extends Core_Gateway {
 	 *
 	 * @see Core_Gateway::start()
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function start( Payment $payment ) {
 		$result = $this->client->create_payment(
@@ -99,7 +99,7 @@ class Gateway extends Core_Gateway {
 	/**
 	 * Update status of the specified payment
 	 *
-	 * @param Payment $payment
+	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
 		$result = $this->client->check_payment( $payment->get_transaction_id() );
@@ -108,21 +108,21 @@ class Gateway extends Core_Gateway {
 			$consumer = $result->consumer;
 
 			switch ( $result->status ) {
-				case Statuses::SUCCESS :
+				case Statuses::SUCCESS:
 					$payment->set_consumer_name( $consumer->name );
 					$payment->set_consumer_account_number( $consumer->account );
 					$payment->set_consumer_city( $consumer->city );
 					$payment->set_status( $result->status );
 
 					break;
-				case Statuses::CANCELLED :
-				case Statuses::EXPIRED :
-				case Statuses::FAILURE :
+				case Statuses::CANCELLED:
+				case Statuses::EXPIRED:
+				case Statuses::FAILURE:
 					$payment->set_status( $result->status );
 
 					break;
-				case Statuses::CHECKED_BEFORE :
-					// Nothing to do here
+				case Statuses::CHECKED_BEFORE:
+					// Nothing to do here.
 					break;
 			}
 		} else {

@@ -23,6 +23,9 @@
 
 		<exclude name="Squiz.Commenting" />
 
-		<exclude name="WordPress.VIP.SlowDBQuery.slow_db_query" />
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName" />
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase" />
+
+        <exclude name="WordPress.DB.SlowDBQuery.slow_db_query_meta_key" />
 	</rule>
 </ruleset>

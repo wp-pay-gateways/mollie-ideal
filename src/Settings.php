@@ -15,13 +15,23 @@ use Pronamic\WordPress\Pay\Core\GatewaySettings;
  * @since   1.1.0
  */
 class Settings extends GatewaySettings {
+	/**
+	 * Settings constructor.
+	 */
 	public function __construct() {
 		add_filter( 'pronamic_pay_gateway_sections', array( $this, 'sections' ) );
 		add_filter( 'pronamic_pay_gateway_fields', array( $this, 'fields' ) );
 	}
 
+	/**
+	 * Sections.
+	 *
+	 * @param array $sections Settings sections.
+	 *
+	 * @return array
+	 */
 	public function sections( array $sections ) {
-		// iDEAL
+		// Mollie iDEAL.
 		$sections['mollie_ideal'] = array(
 			'title'   => __( 'Mollie iDEAL', 'pronamic_ideal' ),
 			'methods' => array( 'mollie_ideal' ),
@@ -30,8 +40,15 @@ class Settings extends GatewaySettings {
 		return $sections;
 	}
 
+	/**
+	 * Fields.
+	 *
+	 * @param array $fields Settings fields.
+	 *
+	 * @return array
+	 */
 	public function fields( array $fields ) {
-		// Partner ID
+		// Partner ID.
 		$fields[] = array(
 			'filter'      => FILTER_SANITIZE_STRING,
 			'section'     => 'mollie_ideal',
@@ -43,7 +60,7 @@ class Settings extends GatewaySettings {
 			'methods'     => array( 'mollie_ideal' ),
 		);
 
-		// Profile Key
+		// Profile Key.
 		$fields[] = array(
 			'filter'      => FILTER_SANITIZE_STRING,
 			'section'     => 'mollie_ideal',
@@ -52,7 +69,11 @@ class Settings extends GatewaySettings {
 			'type'        => 'text',
 			'classes'     => array( 'regular-text', 'code' ),
 			'description' => sprintf(
-				__( 'Hiermee kunt u een ander websiteprofielen selecteren om uw betaling aan te linken. Gebruik de waarde uit het veld Key uit het profiel overzicht. [<a href="%s" target="_blank">bekijk overzicht van uw profielen</a>].', 'pronamic_ideal' ),
+				/* translators: %s: dashboard URL */
+				__(
+					'Hiermee kunt u een ander websiteprofielen selecteren om uw betaling aan te linken. Gebruik de waarde uit het veld Key uit het profiel overzicht. [<a href="%s" target="_blank">bekijk overzicht van uw profielen</a>].',
+					'pronamic_ideal'
+				),
 				'https://www.mollie.nl/beheer/account/profielen/'
 			),
 			'methods'     => array( 'mollie_ideal' ),
