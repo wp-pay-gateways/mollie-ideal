@@ -18,13 +18,6 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  */
 class Gateway extends Core_Gateway {
 	/**
-	 * Slug of this gateway
-	 *
-	 * @var string
-	 */
-	const SLUG = 'mollie_ideal';
-
-	/**
 	 * Constructs and initializes an Mollie gateway
 	 *
 	 * @param Config $config Config.
@@ -33,7 +26,6 @@ class Gateway extends Core_Gateway {
 		parent::__construct( $config );
 
 		$this->set_method( self::METHOD_HTTP_REDIRECT );
-		$this->set_slug( self::SLUG );
 
 		$this->client = new Client( $config->partner_id );
 		$this->client->set_test_mode( self::MODE_TEST === $config->mode );
