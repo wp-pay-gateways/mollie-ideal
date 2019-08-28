@@ -7,7 +7,7 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
-## [2.0.2] - 2019-08-27
+## [2.0.2] - 2019-08-28
 - Updated packages.
 
 ## [2.0.1] - 2018-12-12
