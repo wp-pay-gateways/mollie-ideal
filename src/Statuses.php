@@ -7,7 +7,7 @@ use Pronamic\WordPress\Pay\Core\Statuses as Core_Statuses;
 /**
  * Title: Mollie iDEAL statuses constants
  * Description:
- * Copyright: Copyright (c) 2005 - 2018
+ * Copyright: 2005-2019 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
@@ -53,23 +53,23 @@ class Statuses {
 	/**
 	 * Transform an Mollie state to an more global status
 	 *
-	 * @param string $status
+	 * @param string $status Status.
 	 */
 	public static function transform( $status ) {
 		switch ( $status ) {
-			case self::SUCCESS :
+			case self::SUCCESS:
 				return Core_Statuses::SUCCESS;
 
-			case self::CANCELLED :
+			case self::CANCELLED:
 				return Core_Statuses::CANCELLED;
 
-			case self::EXPIRED :
+			case self::EXPIRED:
 				return Core_Statuses::EXPIRED;
 
-			case self::FAILURE :
+			case self::FAILURE:
 				return Core_Statuses::FAILURE;
 
-			case self::CHECKED_BEFORE :
+			case self::CHECKED_BEFORE:
 				return null;
 
 			default:
