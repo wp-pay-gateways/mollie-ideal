@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
-use Pronamic\WordPress\Pay\Payments\PaymentStatus as CoreStatuses;
+use Pronamic\WordPress\Pay\Payments\PaymentStatus as Core_Statuses;
 
 /**
  * Title: Mollie iDEAL statuses constants tests
@@ -28,10 +28,10 @@ class StatusesTest extends \PHPUnit_Framework_TestCase {
 
 	public function status_matrix_provider() {
 		return array(
-			array( Statuses::SUCCESS, CoreStatuses::SUCCESS ),
-			array( Statuses::CANCELLED, CoreStatuses::CANCELLED ),
-			array( Statuses::EXPIRED, CoreStatuses::EXPIRED ),
-			array( Statuses::FAILURE, CoreStatuses::FAILURE ),
+			array( Statuses::SUCCESS, Core_Statuses::SUCCESS ),
+			array( Statuses::CANCELLED, Core_Statuses::CANCELLED ),
+			array( Statuses::EXPIRED, Core_Statuses::EXPIRED ),
+			array( Statuses::FAILURE, Core_Statuses::FAILURE ),
 			array( Statuses::CHECKED_BEFORE, null ),
 			array( 'not existing status', null ),
 		);
