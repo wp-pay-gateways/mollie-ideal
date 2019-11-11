@@ -89,12 +89,10 @@ class Client {
 	/**
 	 * Send request with the specified action and parameters
 	 *
-	 * @param string $action
-	 * @param array $parameters
+	 * @param string $action     Request action.
+	 * @param array  $parameters Request parameters.
 	 *
 	 * @return bool|string
-	 *
-	 * @throws \Pronamic\WordPress\Pay\PayException Throws exception on errored remote request.
 	 */
 	private function send_request( $action, array $parameters = array() ) {
 		$parameters = $this->get_parameters( $action, $parameters );
