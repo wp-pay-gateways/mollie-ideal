@@ -18,6 +18,13 @@ use Pronamic\WordPress\Pay\Payments\Payment;
  */
 class Gateway extends Core_Gateway {
 	/**
+	 * Client.
+	 *
+	 * @var Client
+	 */
+	public $client;
+
+	/**
 	 * Constructs and initializes an Mollie gateway
 	 *
 	 * @param Config $config Config.
@@ -39,14 +46,14 @@ class Gateway extends Core_Gateway {
 	public function get_issuers() {
 		$groups = array();
 
-		$result = $this->client->get_banks();
+		try {
+			$result = $this->client->get_banks();
 
-		if ( $result ) {
 			$groups[] = array(
 				'options' => $result,
 			);
-		} else {
-			$this->error = $this->client->get_error();
+		} catch ( \Exception $e ) {
+			$this->error = new \WP_Error( 'ideal_advanced_v3_error', $e->getMessage() );
 		}
 
 		return $groups;
@@ -82,9 +89,6 @@ class Gateway extends Core_Gateway {
 		if ( false !== $result ) {
 			$payment->set_transaction_id( $result->transaction_id );
 			$payment->set_action_url( $result->url );
-
-		} else {
-			$this->error = $this->client->get_error();
 		}
 	}
 
@@ -94,7 +98,11 @@ class Gateway extends Core_Gateway {
 	 * @param Payment $payment Payment.
 	 */
 	public function update_status( Payment $payment ) {
-		$result = $this->client->check_payment( $payment->get_transaction_id() );
+		try {
+			$result = $this->client->check_payment( $payment->get_transaction_id() );
+		} catch ( \Exception $e ) {
+			return;
+		}
 
 		if ( false !== $result ) {
 			$consumer = $result->consumer;
@@ -117,8 +125,6 @@ class Gateway extends Core_Gateway {
 					// Nothing to do here.
 					break;
 			}
-		} else {
-			$this->error = $this->client->get_error();
 		}
 	}
 }

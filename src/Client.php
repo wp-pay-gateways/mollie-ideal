@@ -105,7 +105,13 @@ class Client {
 		 */
 		$url = Util::build_url( self::API_URL, $parameters );
 
-		return Util::remote_get_body( $url, 200 );
+		$response = Util::remote_get_body( $url, 200 );
+
+		if ( \is_wp_error( $response ) ) {
+			throw new \Exception( $response->get_error_message() );
+		}
+
+		return $response;
 	}
 
 	/**
@@ -146,7 +152,7 @@ class Client {
 				(string) $xml->item->message
 			);
 
-			throw new \Pronamic\WordPress\Pay\GatewayException( 'mollie', (string) $error, $error );
+			throw new \Exception( (string) $error );
 		}
 
 		if ( isset( $xml->order ) ) {
