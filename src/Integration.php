@@ -11,7 +11,7 @@ use Pronamic\WordPress\Pay\Gateways\Common\AbstractIntegration;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.0
+ * @version 2.0.3
  * @since   1.0.0
  */
 class Integration extends AbstractIntegration {
@@ -46,6 +46,7 @@ class Integration extends AbstractIntegration {
 			'type'        => 'text',
 			'classes'     => array( 'regular-text', 'code' ),
 			'description' => sprintf(
+				/* translators: %s: Mollie account profile URL */
 				__( 'Hiermee kunt u een ander websiteprofielen selecteren om uw betaling aan te linken. Gebruik de waarde uit het veld Key uit het profiel overzicht. [<a href="%s" target="_blank">bekijk overzicht van uw profielen</a>].', 'pronamic_ideal' ),
 				'https://www.mollie.nl/beheer/account/profielen/'
 			),

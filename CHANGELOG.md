@@ -7,6 +7,10 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## [Unreleased][unreleased]
 -
 
+## [2.0.3] - 2019-12-22
+- Improved error handling with exceptions.
+- Updated payment status class name.
+
 ## [2.0.2] - 2019-08-28
 - Updated packages.
 
@@ -43,7 +47,8 @@ This projects adheres to [Semantic Versioning](http://semver.org/) and [Keep a C
 ## 1.0.0 - 2015-01-19
 - First release.
 
-[unreleased]: https://github.com/wp-pay-gateways/mollie-ideal/compare/2.0.2...HEAD
+[unreleased]: https://github.com/wp-pay-gateways/mollie-ideal/compare/2.0.3...HEAD
+[2.0.3]: https://github.com/wp-pay-gateways/mollie-ideal/compare/2.0.2...2.0.3
 [2.0.2]: https://github.com/wp-pay-gateways/mollie-ideal/compare/2.0.1...2.0.2
 [2.0.1]: https://github.com/wp-pay-gateways/mollie-ideal/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/wp-pay-gateways/mollie-ideal/compare/1.0.6...2.0.0

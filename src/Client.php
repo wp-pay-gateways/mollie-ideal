@@ -6,7 +6,6 @@ use Pronamic\WordPress\Pay\Core\Util;
 use Pronamic\WordPress\Pay\Core\XML\Security;
 use SimpleXMLElement;
 use stdClass;
-use WP_Error;
 
 /**
  * Title: Mollie
@@ -15,7 +14,7 @@ use WP_Error;
  * Company: Pronamic
  *
  * @author  Remco Tolsma
- * @version 2.0.0
+ * @version 2.0.3
  */
 class Client {
 	/**
@@ -47,28 +46,12 @@ class Client {
 	private $test_mode;
 
 	/**
-	 * Error
-	 *
-	 * @var WP_Error
-	 */
-	private $error;
-
-	/**
 	 * Constructs and initializes an Mollie client object
 	 *
 	 * @param string $partner_id
 	 */
 	public function __construct( $partner_id ) {
 		$this->partner_id = $partner_id;
-	}
-
-	/**
-	 * Error
-	 *
-	 * @return WP_Error
-	 */
-	public function get_error() {
-		return $this->error;
 	}
 
 	/**
@@ -106,10 +89,10 @@ class Client {
 	/**
 	 * Send request with the specified action and parameters
 	 *
-	 * @param string $action
-	 * @param array $parameters
+	 * @param string $action     Request action.
+	 * @param array  $parameters Request parameters.
 	 *
-	 * @return bool|string|WP_Error
+	 * @return bool|string
 	 */
 	private function send_request( $action, array $parameters = array() ) {
 		$parameters = $this->get_parameters( $action, $parameters );
@@ -122,36 +105,32 @@ class Client {
 		 */
 		$url = Util::build_url( self::API_URL, $parameters );
 
-		return Util::remote_get_body( $url, 200 );
+		$response = Util::remote_get_body( $url, 200 );
+
+		if ( \is_wp_error( $response ) ) {
+			throw new \Exception( $response->get_error_message() );
+		}
+
+		return $response;
 	}
 
 	/**
 	 * Get banks
 	 *
-	 * @return bool|array
+	 * @return array
 	 */
 	public function get_banks() {
-		$banks = false;
+		$banks = array();
 
 		$result = $this->send_request( Actions::BANK_LIST );
 
-		if ( is_wp_error( $result ) ) {
-			$this->error = $result;
-		} else {
-			$xml = Util::simplexml_load_string( $result );
+		$xml = Util::simplexml_load_string( $result );
 
-			if ( is_wp_error( $xml ) ) {
-				$this->error = $xml;
-			} else {
-				$banks = array();
+		foreach ( $xml->bank as $bank ) {
+			$id   = (string) $bank->bank_id;
+			$name = (string) $bank->bank_name;
 
-				foreach ( $xml->bank as $bank ) {
-					$id   = (string) $bank->bank_id;
-					$name = (string) $bank->bank_name;
-
-					$banks[ $id ] = $name;
-				}
-			}
+			$banks[ $id ] = $name;
 		}
 
 		return $banks;
@@ -167,15 +146,13 @@ class Client {
 	private function parse_document( SimpleXMLElement $xml ) {
 		$result = false;
 
-		if ( isset( $xml->item ) ) {
-			if ( 'error' === $xml->item['type'] ) {
-				$error = new Error(
-					(string) $xml->item->errorcode,
-					(string) $xml->item->message
-				);
+		if ( isset( $xml->item ) && 'error' === $xml->item['type'] ) {
+			$error = new Error(
+				(string) $xml->item->errorcode,
+				(string) $xml->item->message
+			);
 
-				$this->error = new WP_Error( 'mollie_error', (string) $error, $error );
-			}
+			throw new \Exception( (string) $error );
 		}
 
 		if ( isset( $xml->order ) ) {
@@ -219,15 +196,9 @@ class Client {
 
 		$result = $this->send_request( Actions::FETCH, $parameters );
 
-		if ( false !== $result && ! is_wp_error( $result ) ) {
-			$xml = Util::simplexml_load_string( $result );
+		$xml = Util::simplexml_load_string( $result );
 
-			if ( is_wp_error( $xml ) ) {
-				$this->error = $xml;
-			} else {
-				$result = self::parse_document( $xml );
-			}
-		}
+		$result = self::parse_document( $xml );
 
 		return $result;
 	}
@@ -246,28 +217,22 @@ class Client {
 
 		$result = $this->send_request( Actions::CHECK, $parameters );
 
-		if ( false !== $result ) {
-			$xml = Util::simplexml_load_string( $result );
+		$xml = Util::simplexml_load_string( $result );
 
-			if ( is_wp_error( $xml ) ) {
-				$this->error = $xml;
-			} else {
-				$order = new stdClass();
+		$order = new stdClass();
 
-				$order->transaction_id = Security::filter( $xml->order->transaction_id );
-				$order->amount         = Security::filter( $xml->order->amount );
-				$order->currency       = Security::filter( $xml->order->currency );
-				$order->payed          = Security::filter( $xml->order->payed, FILTER_VALIDATE_BOOLEAN );
-				$order->status         = Security::filter( $xml->order->status );
+		$order->transaction_id = Security::filter( $xml->order->transaction_id );
+		$order->amount         = Security::filter( $xml->order->amount );
+		$order->currency       = Security::filter( $xml->order->currency );
+		$order->payed          = Security::filter( $xml->order->payed, FILTER_VALIDATE_BOOLEAN );
+		$order->status         = Security::filter( $xml->order->status );
 
-				$order->consumer          = new stdClass();
-				$order->consumer->name    = Security::filter( $xml->order->consumer->consumerName );
-				$order->consumer->account = Security::filter( $xml->order->consumer->consumerAccount );
-				$order->consumer->city    = Security::filter( $xml->order->consumer->consumerCity );
+		$order->consumer          = new stdClass();
+		$order->consumer->name    = Security::filter( $xml->order->consumer->consumerName );
+		$order->consumer->account = Security::filter( $xml->order->consumer->consumerAccount );
+		$order->consumer->city    = Security::filter( $xml->order->consumer->consumerCity );
 
-				$result = $order;
-			}
-		}
+		$result = $order;
 
 		return $result;
 	}
