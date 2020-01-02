@@ -5,7 +5,7 @@ namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 /**
  * Title: Mollie iDEAL actions constants tests
  * Description:
- * Copyright: 2005-2019 Pronamic
+ * Copyright: 2005-2020 Pronamic
  * Company: Pronamic
  *
  * @author  Remco Tolsma
