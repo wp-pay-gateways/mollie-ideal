@@ -2,7 +2,7 @@
 
 namespace Pronamic\WordPress\Pay\Gateways\MollieIDeal;
 
-use Pronamic\WordPress\Pay\Gateways\Common\AbstractIntegration;
+use Pronamic\WordPress\Pay\AbstractGatewayIntegration;
 
 /**
  * Title: Mollie iDEAL integration
@@ -14,15 +14,25 @@ use Pronamic\WordPress\Pay\Gateways\Common\AbstractIntegration;
  * @version 2.0.3
  * @since   1.0.0
  */
-class Integration extends AbstractIntegration {
-	public function __construct() {
-		parent::__construct();
+class Integration extends AbstractGatewayIntegration {
+	/**
+	 * Construct Mollie iDEAL integration.
+	 *
+	 * @param array $args Arguments.
+	 */
+	public function __construct( $args = array() ) {
+		$args = wp_parse_args(
+			$args,
+			array(
+				'id'            => 'mollie-ideal',
+				'name'          => 'Mollie - iDEAL',
+				'dashboard_url' => 'http://www.mollie.nl/beheer/',
+				'provider'      => 'mollie',
+				'deprecated'    => true,
+			)
+		);
 
-		$this->id            = 'mollie-ideal';
-		$this->name          = 'Mollie - iDEAL';
-		$this->dashboard_url = 'http://www.mollie.nl/beheer/';
-		$this->provider      = 'mollie';
-		$this->deprecated    = true;
+		parent::__construct( $args );
 	}
 
 	public function get_settings_fields() {
