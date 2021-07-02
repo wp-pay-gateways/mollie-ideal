@@ -174,7 +174,7 @@ class Client {
 	 * Create payment with the specified details
 	 *
 	 * @param string $bank_id
-	 * @param float $amount
+	 * @param string $amount
 	 * @param string $description
 	 * @param string $return_url
 	 * @param string $report_url
